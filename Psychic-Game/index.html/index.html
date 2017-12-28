@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<html lang="en-us">
+
+<head>
+
+	<meta charset="UTF-8">
+	<!--<link rel="stylesheet" type="text/css" href=".css"> -->
+	<!--<script src="game.js"></script> -->
+
+	<title>Psychic Game</title>
+
+
+</head>
+
+<body>
+	
+
+	<h1>The Psychic Game</h1>
+
+	<div id="game">
+	<h3>Can you guess which letter I'm thinkning of? 
+	<br>
+	Type any lowercase letter a-z to see!</h3>
+	</div>
+
+	<script type="text/javascript">
+
+	var computerChoices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+	var wins = 0;
+	var losses = 0;
+	var guessesLeft = 25;
+	var guessesSoFar = [];
+	var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+	
+	document.onKeyUp = function(event){
+	
+	var userGuess = event.key.toLowerCase();
+
+		if ((guessesSoFar.indexOf(userGuess)) < 0 && computerChoices.indexOf(userGuess) >= 0) {
+ 			guessesSoFar[guessesSoFar.length]=userGuess;
+ 	
+ 			guessesLeft--;
+
+	
+		if ((userGuess === computerGuess)) {
+		wins++;
+    	} else if ((userGuess !== computerGuess)) {
+		losses++;
+		}
+
+	var guessesLeft = computerChoices.length
+	
+
+	var html =   
+		"<p>Wins: " + wins + "</p>" +
+		"<p>Loss: " + Losses + "/p>" +
+		"<p>Guesses you have left: " + GuessesLeft + "</p>" +
+		"<p>Letters you have guessed so far: " + guessesSoFar + "</p>";
+
+
+	 document.querySelector("#game").innerHTML = html;
+	}
+	};
+
+	</script>
+</body>
+</html>
+
+
+<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.7.7/lux/bootstrap.min.css"> -->
+
+
