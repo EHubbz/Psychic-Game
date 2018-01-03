@@ -1,0 +1,25 @@
+body {background-color: black;
+}
+
+header {text-align: center; font-size: 36px; border-style: solid;
+		background-color: lightblue;
+		height: 125px;
+		column-width: 100%
+		padding: 20px;
+}
+
+#game {text-align: center;
+		background-color: lightgrey;
+		font-size: 24px;
+		padding: 20px 25px;
+		margin: 10px;
+		float: left;
+}
+
+#img {margin: 10px;
+	  float: left;
+}
+
+p {font-style: underline;
+
+}
