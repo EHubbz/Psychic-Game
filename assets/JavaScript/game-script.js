@@ -1,44 +1,51 @@
 
-var computerChoices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+	var choices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 	var wins = 0;
 	var losses = 0;
-	var guessesLeft = 10;
+	var guessesLeft = 0;
 	var guessesSoFar = [];
+	var computerGuess ="";
+
+	function start() {
+		computerGuess = choices[Math.floor(Math.random() * choices.length)];
+		console.log(computerGuess);
+		guessesLeft = 10
+		guessesSoFar = []
+	}  	
 	
 	document.onkeyup = function(event) {
 							
-	var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
-	var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
-		guessesSoFar.push(userGuess);
+		var userGuess = event.key.toLowerCase();
 
+		guessesSoFar.push(userGuess)
 
+		console.log(userGuess, computerGuess)
 		if (userGuess === computerGuess) {
 			wins++;
-			guessesLeft = 9
-			guessesSoFar.length = 0
-
-    	} else if (guessesLeft == 0) {
-    		losses++
-    		guessesLeft = 9;
-    		guessesSoFar.length = 0
-    	
-    	} else if (userGuess !== computerGuess) {
 			guessesLeft--;
-		
-		}
-	
-	var html = "<h3>Can you guess which letter I am thinking of?</h3>" +
-		
-		"<h4>Type any lowercase letter a-z to see!</h4>" +
+			guessesSoFar.length = 0;
+			start()
 
-		"<p>Wins: " + wins + "</p>" +
-	    
-		"<p>Losses: " + losses + "/p>" +
-	    
-		"<p>Guesses you have left: " + guessesLeft + "</p>" +
-	     
-		"<p>Letters you have guessed so far: " + guessesSoFar + "</p>";
+    	} else if (userGuess !== computerGuess) {
+    		losses++;
+			guessesLeft--;
+			guessesSoFar.length = userGuess.length;
+			if (guessesLeft <= 0) {
+				start();
+			}
+		
 		}
+		
+		updateDisplay();
+	
 	};
 
-	 document.getElementById("#game").innerHTML = html
+	function updateDisplay() {
+		document.getElementById("wins").innerHTML = wins; 
+		document.getElementById("losses").innerHTML = losses; 
+		document.getElementById("guessesLeft").innerHTML = guessesLeft; 
+		document.getElementById("guessesSoFar").innerHTML = guessesSoFar; //not displaying in HTML correctly....trouble with appending the last guessed letter into the list.
+	}
+
+
+	start(); 
